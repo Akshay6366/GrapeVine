@@ -2,95 +2,90 @@
 <html lang="en" class="">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin Dashboard - GrapeVine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard - GrapeVine</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script> tailwind.config = { darkMode: 'class' } </script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
 
   <!-- Navbar -->
-  <nav class="bg-purple-700 dark:bg-purple-900 text-white px-6 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">🍇 GrapeVine Admin</h1>
-    <div class="flex items-center space-x-4">
-      <!-- Dark Mode Toggle (pill) -->
-      <button onclick="toggleDarkMode()"
-              class="w-14 h-7 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1 transition duration-300 relative">
-        <div id="toggleIcon"
-             class="bg-white w-6 h-6 rounded-full shadow-md transform transition duration-300 flex items-center justify-center">
+  <nav class="bg-purple-700 dark:bg-purple-900 text-white px-4 sm:px-6 py-3 flex justify-between items-center">
+    <h1 class="text-lg sm:text-xl font-bold">🍇 GrapeVine Admin</h1>
+    <div class="flex items-center space-x-3 sm:space-x-4">
+      <!-- Dark Mode Toggle -->
+      <button onclick="toggleDarkMode()" class="w-14 h-7 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1 transition duration-300 relative">
+        <div id="toggleIcon" class="bg-white w-6 h-6 rounded-full shadow-md transform transition duration-300 flex items-center justify-center">
           🌞
         </div>
       </button>
-
-      <a href="index.html" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded text-white">Home</a>
-      <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded">Logout</button>
+      <a href="index.html" class="bg-green-500 hover:bg-green-600 px-3 sm:px-4 py-2 rounded text-white text-sm sm:text-base">Home</a>
+      <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-3 sm:px-4 py-2 rounded text-sm sm:text-base">Logout</button>
     </div>
   </nav>
 
-  <!-- Content -->
-  <main class="max-w-7xl mx-auto p-8">
-    <h2 class="text-2xl font-bold mb-6">Dashboard Overview</h2>
+  <main class="max-w-7xl mx-auto p-4 sm:p-8">
+    <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Dashboard Overview</h2>
 
     <!-- Summary Cards -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow text-center">
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
+      <div class="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-2xl shadow text-center">
         <h4 class="text-sm text-gray-500 dark:text-gray-300">Total Orders</h4>
-        <p id="totalOrders" class="text-2xl font-bold text-purple-700 dark:text-purple-400">0</p>
+        <p id="totalOrders" class="text-xl sm:text-2xl font-bold text-purple-700 dark:text-purple-400">0</p>
       </div>
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow text-center">
+      <div class="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-2xl shadow text-center">
         <h4 class="text-sm text-gray-500 dark:text-gray-300">Total Revenue</h4>
-        <p id="totalRevenue" class="text-2xl font-bold text-green-600">₹0</p>
+        <p id="totalRevenue" class="text-xl sm:text-2xl font-bold text-green-600">₹0</p>
       </div>
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow text-center">
+      <div class="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-2xl shadow text-center">
         <h4 class="text-sm text-gray-500 dark:text-gray-300">Today's Orders</h4>
-        <p id="todayOrders" class="text-2xl font-bold text-blue-600">0</p>
+        <p id="todayOrders" class="text-xl sm:text-2xl font-bold text-blue-600">0</p>
       </div>
     </section>
 
     <!-- Charts -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow">
-        <h3 class="text-lg font-semibold mb-4 text-purple-700 dark:text-purple-400">Orders by Variety</h3>
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-2xl shadow">
+        <h3 class="text-base sm:text-lg font-semibold mb-4 text-purple-700 dark:text-purple-400">Orders by Variety</h3>
         <canvas id="ordersPie"></canvas>
       </div>
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow">
-        <h3 class="text-lg font-semibold mb-4 text-purple-700 dark:text-purple-400">Revenue Summary</h3>
+      <div class="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-2xl shadow">
+        <h3 class="text-base sm:text-lg font-semibold mb-4 text-purple-700 dark:text-purple-400">Revenue Summary</h3>
         <canvas id="revenueChart"></canvas>
       </div>
     </section>
 
     <!-- Order History Table -->
-    <section class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow mt-10">
+    <section class="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-2xl shadow mt-8 overflow-hidden">
       <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4 space-y-2 md:space-y-0">
-        <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-400">Order History</h3>
-        <div class="flex space-x-2">
-          <input id="searchBar" type="text" placeholder="Search by Name or Phone"
-                 class="border rounded p-2 w-48 dark:bg-gray-700 dark:text-white">
-          <select id="dateFilter" class="border rounded p-2 dark:bg-gray-700 dark:text-white">
+        <h3 class="text-base sm:text-lg font-semibold text-purple-700 dark:text-purple-400">Order History</h3>
+        <div class="flex flex-wrap gap-2">
+          <input id="searchBar" type="text" placeholder="Search by Name or Phone" class="border rounded p-2 text-sm w-40 sm:w-48 dark:bg-gray-700 dark:text-white">
+          <select id="dateFilter" class="border rounded p-2 text-sm dark:bg-gray-700 dark:text-white">
             <option value="all">All Orders</option>
             <option value="today">Today</option>
             <option value="week">Last 7 Days</option>
             <option value="month">This Month</option>
           </select>
-          <button onclick="downloadCSV()" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded">
-            ⬇ Download CSV
+          <button onclick="downloadCSV()" class="bg-purple-600 hover:bg-purple-700 text-white px-3 sm:px-4 py-2 rounded text-sm">
+            ⬇ CSV
           </button>
         </div>
       </div>
 
       <div class="overflow-x-auto">
-        <table class="w-full border-collapse">
+        <table class="w-full border-collapse text-sm sm:text-base">
           <thead>
             <tr class="bg-purple-100 dark:bg-gray-700 text-left">
-              <th class="p-3 border">Name</th>
-              <th class="p-3 border">Phone</th>
-              <th class="p-3 border">Variety</th>
-              <th class="p-3 border">Quantity (kg)</th>
-              <th class="p-3 border">Total (₹)</th>
-              <th class="p-3 border">Date</th>
-              <th class="p-3 border">Status</th>
-              <th class="p-3 border text-center">Action</th>
+              <th class="p-2 sm:p-3 border">Name</th>
+              <th class="p-2 sm:p-3 border">Phone</th>
+              <th class="p-2 sm:p-3 border">Variety</th>
+              <th class="p-2 sm:p-3 border">Qty (kg)</th>
+              <th class="p-2 sm:p-3 border">Total (₹)</th>
+              <th class="p-2 sm:p-3 border">Date</th>
+              <th class="p-2 sm:p-3 border">Status</th>
+              <th class="p-2 sm:p-3 border text-center">Action</th>
             </tr>
           </thead>
           <tbody id="orderTableBody"></tbody>
@@ -100,17 +95,14 @@
   </main>
 
   <script>
-    /* ---------- Auth ---------- */
+    // AUTH
     if (localStorage.getItem("isAdmin") !== "true") {
       alert("Unauthorized! Please login.");
       window.location.href = "admin_login.html";
     }
-    function logout() {
-      localStorage.removeItem("isAdmin");
-      window.location.href = "admin_login.html";
-    }
+    function logout() { localStorage.removeItem("isAdmin"); window.location.href = "admin_login.html"; }
 
-    /* ---------- Theme ---------- */
+    // DARK MODE
     function toggleDarkMode() {
       document.documentElement.classList.toggle("dark");
       const knob = document.getElementById("toggleIcon");
@@ -124,203 +116,51 @@
         knob.classList.remove("translate-x-7");
       }
     }
-    (function initTheme(){
-      if (localStorage.getItem("theme") === "dark") {
-        document.documentElement.classList.add("dark");
-        const knob = document.getElementById("toggleIcon");
-        knob.innerHTML = "🌙";
-        knob.classList.add("translate-x-7");
-      }
-    })();
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark");
+      document.getElementById("toggleIcon").innerHTML = "🌙";
+      document.getElementById("toggleIcon").classList.add("translate-x-7");
+    }
 
-    /* ---------- Data ---------- */
+    // DATA
     let orders = JSON.parse(localStorage.getItem("orders")) || [];
-    orders = orders.map(o => ({ status: "Pending", ...o })); // ensure status
+    orders = orders.map(o => { if (!o.status) o.status = "Pending"; return o; });
     localStorage.setItem("orders", JSON.stringify(orders));
 
-    /* ---------- Dashboard State + Charts ---------- */
+    // STATS
     let pieChart, barChart;
-
     function computeStats(list) {
       const counts = { Red: 0, Green: 0, Black: 0 };
-      let revenueDay = 0, revenueWeek = 0, revenueMonth = 0;
-      let totalRevenue = 0, todayOrders = 0;
-
+      let revDay=0, revWeek=0, revMonth=0, totalRev=0, todayOrders=0;
       const now = new Date();
-
-      list.forEach(o => {
-        if (o.variety.includes("Red")) counts.Red += Number(o.quantity);
-        if (o.variety.includes("Green")) counts.Green += Number(o.quantity);
-        if (o.variety.includes("Black") || o.variety.includes("Purple"))
-          counts.Black += Number(o.quantity);
-
-        const price = o.variety.includes("Red") ? 200 :
-                      o.variety.includes("Green") ? 180 : 220;
-        const rev = price * Number(o.quantity);
-        totalRevenue += rev;
-
-        const d = new Date(o.date);
-        if (d.toDateString() === now.toDateString()) { revenueDay += rev; todayOrders++; }
-        if (d >= new Date(now - 7*24*60*60*1000)) revenueWeek += rev;
-        if (d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear()) revenueMonth += rev;
+      list.forEach(o=>{
+        if(o.variety.includes("Red")) counts.Red+=+o.quantity;
+        if(o.variety.includes("Green")) counts.Green+=+o.quantity;
+        if(o.variety.includes("Black")||o.variety.includes("Purple")) counts.Black+=+o.quantity;
+        const price=o.variety.includes("Red")?200:o.variety.includes("Green")?180:220;
+        const rev=price*+o.quantity; totalRev+=rev;
+        const d=new Date(o.date);
+        if(d.toDateString()===now.toDateString()){revDay+=rev;todayOrders++;}
+        if(d>=new Date(now-7*24*60*60*1000)) revWeek+=rev;
+        if(d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear()) revMonth+=rev;
       });
-
-      return { counts, revenueDay, revenueWeek, revenueMonth, totalRevenue, todayOrders };
+      return {counts,revDay,revWeek,revMonth,totalRev,todayOrders};
     }
-
-    function updateCards(stats, count) {
-      document.getElementById("totalOrders").textContent  = count;
-      document.getElementById("totalRevenue").textContent = "₹" + stats.totalRevenue;
-      document.getElementById("todayOrders").textContent  = stats.todayOrders;
+    function updateCards(s,c){document.getElementById("totalOrders").innerText=c;document.getElementById("totalRevenue").innerText="₹"+s.totalRev;document.getElementById("todayOrders").innerText=s.todayOrders;}
+    function initCharts(s){
+      pieChart=new Chart(document.getElementById("ordersPie"),{type:'pie',data:{labels:["Red","Green","Black"],datasets:[{data:[s.counts.Red,s.counts.Green,s.counts.Black],backgroundColor:["#ef4444","#22c55e","#3b82f6"]}]}})
+      barChart=new Chart(document.getElementById("revenueChart"),{type:'bar',data:{labels:["Today","This Week","This Month"],datasets:[{label:"Revenue (₹)",data:[s.revDay,s.revWeek,s.revMonth],backgroundColor:"#8b5cf6"}]}})
     }
+    function refreshCharts(){const s=computeStats(orders);updateCards(s,orders.length);pieChart.data.datasets[0].data=[s.counts.Red,s.counts.Green,s.counts.Black];pieChart.update();barChart.data.datasets[0].data=[s.revDay,s.revWeek,s.revMonth];barChart.update();}
 
-    function initCharts(stats) {
-      const pieCtx = document.getElementById("ordersPie");
-      const barCtx = document.getElementById("revenueChart");
-
-      pieChart = new Chart(pieCtx, {
-        type: "pie",
-        data: {
-          labels: ["Red Grapes", "Green Grapes", "Black Grapes"],
-          datasets: [{ data: [stats.counts.Red, stats.counts.Green, stats.counts.Black],
-                       backgroundColor: ["#ef4444", "#22c55e", "#3b82f6"] }]
-        }
-      });
-
-      barChart = new Chart(barCtx, {
-        type: "bar",
-        data: {
-          labels: ["Today", "This Week", "This Month"],
-          datasets: [{ label: "Revenue (₹)",
-                       data: [stats.revenueDay, stats.revenueWeek, stats.revenueMonth],
-                       backgroundColor: "#8b5cf6" }]
-        }
-      });
-    }
-
-    function refreshChartsAndCards() {
-      const stats = computeStats(orders);
-      updateCards(stats, orders.length);
-
-      // update pie
-      pieChart.data.datasets[0].data = [stats.counts.Red, stats.counts.Green, stats.counts.Black];
-      pieChart.update();
-
-      // update bar
-      barChart.data.datasets[0].data = [stats.revenueDay, stats.revenueWeek, stats.revenueMonth];
-      barChart.update();
-    }
-
-    /* ---------- Table Rendering ---------- */
-    const tableBody  = document.getElementById("orderTableBody");
-    const dateFilter = document.getElementById("dateFilter");
-    const searchBar  = document.getElementById("searchBar");
-
-    function filteredOrders() {
-      const now = new Date();
-      const filter = dateFilter.value;
-      const search = (searchBar.value || "").toLowerCase();
-
-      return orders.filter(o => {
-        const d = new Date(o.date);
-        if (filter === "today" && d.toDateString() !== now.toDateString()) return false;
-        if (filter === "week"  && d < new Date(now - 7*24*60*60*1000))   return false;
-        if (filter === "month" && (d.getMonth() !== now.getMonth() || d.getFullYear() !== now.getFullYear())) return false;
-        if (search && !(o.name.toLowerCase().includes(search) || String(o.phone).toLowerCase().includes(search))) return false;
-        return true;
-      });
-    }
-
-    function renderTable() {
-      tableBody.innerHTML = "";
-      filteredOrders().forEach((o, idxInFiltered) => {
-        // compute the absolute index in orders so deletion/status works even when filtered
-        const absoluteIndex = orders.findIndex(x => x.date === o.date && x.phone === o.phone && x.name === o.name && x.variety === o.variety && Number(x.quantity) === Number(o.quantity));
-
-        const price = o.variety.includes("Red") ? 200 :
-                      o.variety.includes("Green") ? 180 : 220;
-        const total = price * Number(o.quantity);
-
-        const statusColor =
-          o.status === "Pending" ? "bg-yellow-200 text-yellow-800" :
-          o.status === "Out for Delivery" ? "bg-blue-200 text-blue-800" :
-          "bg-green-200 text-green-800";
-
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td class="p-3 border">${o.name}</td>
-          <td class="p-3 border">${o.phone}</td>
-          <td class="p-3 border">${o.variety}</td>
-          <td class="p-3 border">${o.quantity}</td>
-          <td class="p-3 border">₹${total}</td>
-          <td class="p-3 border">${new Date(o.date).toLocaleString()}</td>
-          <td class="p-3 border">
-            <select class="border rounded p-1 ${statusColor}">
-              <option ${o.status==="Pending"?"selected":""}>Pending</option>
-              <option ${o.status==="Out for Delivery"?"selected":""}>Out for Delivery</option>
-              <option ${o.status==="Delivered"?"selected":""}>Delivered</option>
-            </select>
-          </td>
-          <td class="p-3 border text-center">
-            <button class="p-2 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 inline-flex items-center justify-center">
-              <img src="delete.jpg" alt="Delete" class="w-5 h-5 pointer-events-none">
-            </button>
-          </td>
-        `;
-
-        // status change handler
-        row.querySelector("select").addEventListener("change", (e) => {
-          orders[absoluteIndex].status = e.target.value;
-          localStorage.setItem("orders", JSON.stringify(orders));
-          renderTable(); // recolor badge
-        });
-
-        // delete handler (icon-only button)
-        row.querySelector("button").addEventListener("click", () => {
-          if (confirm("Delete this order?")) {
-            orders.splice(absoluteIndex, 1);
-            localStorage.setItem("orders", JSON.stringify(orders));
-            renderTable();
-            refreshChartsAndCards();
-          }
-        });
-
-        tableBody.appendChild(row);
-      });
-    }
-
-    /* ---------- CSV ---------- */
-    function downloadCSV() {
-      const list = filteredOrders();
-      if (list.length === 0) { alert("No orders to export!"); return; }
-
-      const lines = ["Name,Phone,Variety,Quantity (kg),Total (₹),Date,Status"];
-      list.forEach(o => {
-        const price = o.variety.includes("Red") ? 200 :
-                      o.variety.includes("Green") ? 180 : 220;
-        const total = price * Number(o.quantity);
-        lines.push(`${o.name},${o.phone},${o.variety},${o.quantity},${total},${new Date(o.date).toLocaleString()},${o.status}`);
-      });
-
-      const csvContent = "data:text/csv;charset=utf-8," + lines.join("\n");
-      const link = document.createElement("a");
-      link.href = encodeURI(csvContent);
-      link.download = "grapevine_orders.csv";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    }
-
-    /* ---------- Boot ---------- */
-    const initialStats = computeStats(orders);
-    updateCards(initialStats, orders.length);
-    initCharts(initialStats);
-    renderTable();
-
-    // filters
-    dateFilter.addEventListener("change", renderTable);
-    searchBar.addEventListener("input", renderTable);
+    // TABLE
+    const tb=document.getElementById("orderTableBody"),dateF=document.getElementById("dateFilter"),sb=document.getElementById("searchBar");
+    function filtered(){const now=new Date(),f=dateF.value,s=(sb.value||"").toLowerCase();return orders.filter(o=>{const d=new Date(o.date);if(f==="today"&&d.toDateString()!==now.toDateString())return false;if(f==="week"&&d<new Date(now-7*24*60*60*1000))return false;if(f==="month"&&(d.getMonth()!==now.getMonth()||d.getFullYear()!==now.getFullYear()))return false;if(s&&!(o.name.toLowerCase().includes(s)||String(o.phone).includes(s)))return false;return true;});}
+    function render(){tb.innerHTML="";filtered().forEach(o=>{const idx=orders.findIndex(x=>x.date===o.date&&x.phone===o.phone&&x.name===o.name&&x.variety===o.variety&&+x.quantity===+o.quantity);const price=o.variety.includes("Red")?200:o.variety.includes("Green")?180:220;const total=price*+o.quantity;const statusColor=o.status==="Pending"?"bg-yellow-200 text-yellow-800":o.status==="Out for Delivery"?"bg-blue-200 text-blue-800":"bg-green-200 text-green-800";const tr=document.createElement("tr");tr.innerHTML=`<td class="p-2 sm:p-3 border">${o.name}</td><td class="p-2 sm:p-3 border">${o.phone}</td><td class="p-2 sm:p-3 border">${o.variety}</td><td class="p-2 sm:p-3 border">${o.quantity}</td><td class="p-2 sm:p-3 border">₹${total}</td><td class="p-2 sm:p-3 border">${new Date(o.date).toLocaleString()}</td><td class="p-2 sm:p-3 border"><select class="border rounded p-1 ${statusColor}"><option ${o.status==="Pending"?"selected":""}>Pending</option><option ${o.status==="Out for Delivery"?"selected":""}>Out for Delivery</option><option ${o.status==="Delivered"?"selected":""}>Delivered</option></select></td><td class="p-2 sm:p-3 border text-center"><button class="p-2 rounded-full bg-red-500 hover:bg-red-600"><img src="delete.jpg" class="w-5 h-5"></button></td>`;tr.querySelector("select").addEventListener("change",e=>{orders[idx].status=e.target.value;localStorage.setItem("orders",JSON.stringify(orders));render();});tr.querySelector("button").addEventListener("click",()=>{if(confirm("Delete this order?")){orders.splice(idx,1);localStorage.setItem("orders",JSON.stringify(orders));render();refreshCharts();}});tb.appendChild(tr);});}
+    function downloadCSV(){const list=filtered();if(!list.length){alert("No orders to export!");return;}const lines=["Name,Phone,Variety,Quantity (kg),Total (₹),Date,Status"];list.forEach(o=>{const price=o.variety.includes("Red")?200:o.variety.includes("Green")?180:220;const total=price*+o.quantity;lines.push(`${o.name},${o.phone},${o.variety},${o.quantity},${total},${new Date(o.date).toLocaleString()},${o.status}`);});const csv="data:text/csv;charset=utf-8,"+lines.join("\\n");const a=document.createElement("a");a.href=encodeURI(csv);a.download="grapevine_orders.csv";document.body.appendChild(a);a.click();a.remove();}
+    const stats=computeStats(orders);updateCards(stats,orders.length);initCharts(stats);render();dateF.addEventListener("change",render);sb.addEventListener("input",render);
   </script>
 </body>
 </html>
+
 
