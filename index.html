@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Grapes - Fresh & Delicious</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        .font-display { font-family: 'Playfair Display', serif; }
+        .font-body { font-family: 'Inter', sans-serif; }
+        
+        .grape-gradient {
+            background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 50%, #6D28D9 100%);
+        }
+        
+        .grape-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .grape-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .grape-button {
+            background: linear-gradient(45deg, #8B5CF6, #7C3AED);
+            transition: all 0.3s ease;
+        }
+        
+        .grape-button:hover {
+            background: linear-gradient(45deg, #7C3AED, #6D28D9);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+        }
+    </style>
+</head>
+<body class="font-body bg-gradient-to-br from-purple-50 to-indigo-100 min-h-screen">
+    <!-- Navigation -->
+   <!-- <nav class="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="text-3xl">🍇</div>
+                    <h1 class="font-display text-2xl font-bold text-purple-800">GrapeVine</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-purple-600 transition-colors">Home</a>
+                    <a href="#varieties" class="text-gray-700 hover:text-purple-600 transition-colors">Varieties</a>
+                    <a href="#benefits" class="text-gray-700 hover:text-purple-600 transition-colors">Benefits</a>
+                    <a href="#contact" class="text-gray-700 hover:text-purple-600 transition-colors">Contact</a>
+                    <a href="track_order.html" class="text-gray-700 hover:text-purple-600 transition-colors">Track Order</a>
+
+                </div>
+                <!--<button class="grape-button text-white px-6 py-2 rounded-full font-medium">
+                  <a href="order.html" class="inline-block grape-button text-white px-6 py-2 rounded-full font-medium text-center">
+                    Order Now
+                  </a>
+
+                </button>-->
+                <!--<button>
+                      <a href="admin_login.html" 
+                        class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full font-medium">
+                        Admin Login
+                      </a>
+                </button>
+
+                <button>
+                    <a href="order.html" class="grape-button text-white px-6 py-2 rounded-full font-medium text-center">
+                        Order Now
+                    </a>
+                </button>
+
+            </div>
+        </div>
+    </nav>-->
+    <!-- Navigation -->
+<!-- ✅ Responsive Navbar -->
+<!-- ✅ Responsive Navbar -->
+<nav class="bg-white shadow sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <!-- Logo -->
+    <h1 class="font-display text-2xl font-bold text-purple-800">🍇 GrapeVine</h1>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex space-x-8 items-center">
+      <a href="index.html" class="text-gray-700 hover:text-purple-600 transition-colors">Home</a>
+      <a href="#varieties" class="text-gray-700 hover:text-purple-600 transition-colors">Varieties</a>
+      <a href="#benefits" class="text-gray-700 hover:text-purple-600 transition-colors">Benefits</a>
+      <a href="#contact" class="text-gray-700 hover:text-purple-600 transition-colors">Contact</a>
+      <a href="track_order.html" class="text-gray-700 hover:text-purple-600 transition-colors">Track Orders</a>
+
+      <!-- Order Now Button -->
+      <a href="order.html" 
+         class="grape-button text-white px-6 py-2 rounded-full font-medium">
+        Order Now
+      </a>
+
+      <!-- Admin Login Button -->
+      <a href="admin_login.html" 
+         class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full font-medium">
+        Admin Login
+      </a>
+    </div>
+
+    <!-- Hamburger Icon (Mobile) -->
+    <button id="menu-toggle" class="md:hidden text-3xl focus:outline-none">☰</button>
+  </div>
+
+  <!-- Mobile Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+    <a href="index.html" class="mobile-link block px-6 py-3 text-gray-700 hover:bg-purple-100">Home</a>
+    <a href="#varieties" class="mobile-link block px-6 py-3 text-gray-700 hover:bg-purple-100">Varieties</a>
+    <a href="#benefits" class="mobile-link block px-6 py-3 text-gray-700 hover:bg-purple-100">Benefits</a>
+    <a href="#contact" class="mobile-link block px-6 py-3 text-gray-700 hover:bg-purple-100">Contact</a>
+    <a href="track_order.html" class="mobile-link block px-6 py-3 text-gray-700 hover:bg-purple-100">Track Orders</a>
+    
+    <!-- Order Now Mobile -->
+    <a href="order.html" 
+       class="mobile-link grape-button block w-full text-white px-6 py-3 font-medium text-center">
+      Order Now
+    </a>
+
+    <!-- Admin Login Mobile -->
+    <a href="admin_login.html" 
+       class="mobile-link block bg-red-600 hover:bg-red-700 text-white px-6 py-3 font-medium text-center">
+      Admin Login
+    </a>
+  </div>
+</nav>
+
+<!-- JS for Mobile Menu -->
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const links = document.querySelectorAll(".mobile-link");
+
+  // Toggle menu open/close
+  toggle.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+
+  // Close menu when clicking any link
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.add("hidden");
+    });
+  });
+</script>
+
+<!-- JS for Mobile Menu -->
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const links = document.querySelectorAll(".mobile-link");
+
+  // Toggle menu open/close
+  toggle.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+
+  // Close menu when clicking any link
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.add("hidden");
+    });
+  });
+</script>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative overflow-hidden py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <h2 class="font-display text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
+                        Premium <span class="text-purple-600">Grapes</span> 
+                        <br>Fresh from Vineyard
+                    </h2>
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        Discover the finest selection of grapes, carefully cultivated and harvested at peak ripeness. 
+                        From sweet table grapes to wine varieties, we bring nature's candy straight to your table.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <!--<button class="grape-button text-white px-8 py-4 rounded-full font-semibold text-lg">
+                          <a href="order.html" class="inline-block grape-button text-white px-6 py-2 rounded-full font-medium text-center">
+                             🍇 Shop Grapes
+                          </a>
+                            
+                        </button>-->
+                        <button>
+                        <a href="order.html" class="grape-button text-white px-8 py-4 rounded-full font-semibold text-lg inline-block text-center">
+                          🍇 Shop Grapes
+                        </a>
+                        </button>
+                        <button class="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-600 hover:text-white transition-all">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="floating-animation">
+                        <img src="Black_grape.jpg" alt="Premium Red Grapes" class="w-full h-96 object-cover rounded-3xl shadow-2xl">
+                    </div>
+                    <div class="absolute -top-4 -right-4 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold text-sm">
+                        Fresh Today! 🌟
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grape Varieties Section -->
+    <section id="varieties" class="py-20 bg-white/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="font-display text-4xl font-bold text-gray-800 mb-4">Our Grape Varieties</h3>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    From classic red grapes to exotic varieties, explore our premium selection of the world's finest grapes
+                </p>
+            </div>
+
+
+            <!--new one added by me-->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+  <!-- Red Grapes -->
+  <div class="grape-card bg-white/70 rounded-2xl p-8 text-center shadow-lg flex flex-col h-full min-h-[22rem]">
+    <img src="Red_new.jpg" alt="Fresh red grapes" loading="lazy" class="w-32 h-32 mx-auto mb-4 rounded-full object-cover border-4 border-white shadow-md">
+    <h4 class="font-display text-2xl font-semibold text-gray-800 mb-3">Red Grapes</h4>
+    <p class="text-gray-600 mb-6">
+      Fresh, vibrant red grapes with a sweet, crisp bite. Perfect for fresh eating, wine making, or adding a burst of flavor to your favorite recipes.
+    </p>
+    <a href="order.html?variety=Red Grapes - ₹180/kg"
+        aria-label="View Red Grapes"
+        class="bg-purple-600 hover:bg-purple-700 transition-colors text-white px-6 py-3 rounded-full font-medium w-full mt-auto shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+            Order Red Grapes
+    </a>
+  </div>
+
+  <!-- Green Grapes -->
+  <div class="grape-card bg-white/70 rounded-2xl p-8 text-center shadow-lg flex flex-col h-full min-h-[22rem]">
+    <img src="thompson_grape.jpg" alt="Thompson green grapes" loading="lazy" class="w-32 h-32 mx-auto mb-4 rounded-full object-cover border-4 border-white shadow-md">
+    <h4 class="font-display text-2xl font-semibold text-gray-800 mb-3">Green Grapes</h4>
+    <p class="text-gray-600 mb-6">
+      Crisp and refreshing Thompson green grapes, known for their perfect balance of sweetness and mild tartness.
+    </p>
+    <a href="order.html?variety=Green Grapes - ₹180/kg"
+        aria-label="View Green Grapes"
+        class="bg-purple-600 hover:bg-purple-700 transition-colors text-white px-6 py-3 rounded-full font-medium w-full mt-auto shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+            Order Green Grapes
+    </a>
+  </div>
+
+  <!-- Black Grapes -->
+  <div class="grape-card bg-white/70 rounded-2xl p-8 text-center shadow-lg flex flex-col h-full min-h-[22rem]">
+    <img src="Black_grape.jpg" alt="Black grapes" loading="lazy" class="w-32 h-32 mx-auto mb-4 rounded-full object-cover border-4 border-white shadow-md">
+    <h4 class="font-display text-2xl font-semibold text-gray-800 mb-3">Black Grapes</h4>
+    <p class="text-gray-600 mb-6">
+      Juicy, deep-purple black grapes with a bold, sweet flavor. Perfect for gourmet dishes and desserts.
+    </p>
+    <a href="order.html?variety=Black Grapes - ₹180/kg"
+        aria-label="View Black Grapes"
+        class="bg-purple-600 hover:bg-purple-700 transition-colors text-white px-6 py-3 rounded-full font-medium w-full mt-auto shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+            Order Black Grapes
+    </a>
+  </div>
+</div>
+
+
+
+            <!--i have replace this to above -->
+            <!--<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grape-card bg-white/70 rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-4">🍇</div>
+                    <h4 class="font-display text-2xl font-semibold text-gray-800 mb-3">Red Grapes</h4>
+                    <p class="text-gray-600 mb-6">Sweet, juicy red grapes perfect for snacking or wine making. Rich in antioxidants and bursting with flavor.</p>
+                    <button class="grape-button text-white px-6 py-3 rounded-full font-medium w-full">
+                        View Red Grapes
+                    </button>
+                </div>
+            
+                <div class="grape-card bg-white/70 rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-4">🟢</div>
+                    <h4 class="font-display text-2xl font-semibold text-gray-800 mb-3">Green Grapes</h4>
+                    <p class="text-gray-600 mb-6">Crisp and refreshing green grapes with a perfect balance of sweetness and tartness. Ideal for fresh eating.</p>
+                    <button class="grape-button text-white px-6 py-3 rounded-full font-medium w-full">
+                        View Green Grapes
+                    </button>
+                </div>
+                
+                <div class="grape-card bg-white/70 rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-4">🟣</div>
+                    <h4 class="font-display text-2xl font-semibold text-gray-800 mb-3">Black Grapes</h4>
+                    <p class="text-gray-600 mb-6">Deep purple grapes with intense flavor and exceptional sweetness. Perfect for gourmet dishes and desserts.</p>
+                    <button class="grape-button text-white px-6 py-3 rounded-full font-medium w-full">
+                        View Purple Grapes
+                    </button>
+                </div>
+            </div>
+        -->
+        </div>
+    </section>
+  
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-20 grape-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="font-display text-4xl font-bold text-white mb-4">Why Choose Our Grapes?</h3>
+                <p class="text-xl text-purple-100 max-w-3xl mx-auto">
+                    Our grapes are more than just delicious - they're packed with health benefits and grown with care
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center text-white">
+                    <div class="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">💪</span>
+                    </div>
+                    <h4 class="font-semibold text-lg mb-2">Rich in Antioxidants</h4>
+                    <p class="text-purple-100">Packed with resveratrol and other powerful antioxidants for better health</p>
+                </div>
+                
+                <div class="text-center text-white">
+                    <div class="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">❤️</span>
+                    </div>
+                    <h4 class="font-semibold text-lg mb-2">Heart Healthy</h4>
+                    <p class="text-purple-100">Support cardiovascular health with natural compounds found in grapes</p>
+                </div>
+                
+                <div class="text-center text-white">
+                    <div class="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🌱</span>
+                    </div>
+                    <h4 class="font-semibold text-lg mb-2">Organic & Fresh</h4>
+                    <p class="text-purple-100">Grown without harmful pesticides, harvested at perfect ripeness</p>
+                </div>
+                
+                <div class="text-center text-white">
+                    <div class="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">⚡</span>
+                    </div>
+                    <h4 class="font-semibold text-lg mb-2">Natural Energy</h4>
+                    <p class="text-purple-100">Natural sugars provide quick energy without the crash</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Grape Section -->
+    <section class="py-20 bg-white/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                  <div class="floating-animation">
+                    <img src="Red_new.jpg" alt="Featured Red Grapes" class="w-full h-96 object-cover rounded-3xl shadow-2xl">
+                </div>
+                </div>
+
+                <div class="order-1 lg:order-2 space-y-6">
+                    <div class="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full font-semibold">
+                        🌟 Featured Variety
+                    </div>
+                    <h3 class="font-display text-4xl font-bold text-gray-800">
+                        Premium Red Grapes
+                    </h3>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        Our signature red grapes are hand-picked at the perfect moment of ripeness. These beautiful, 
+                        plump grapes offer an incredible burst of sweetness with subtle wine-like notes that make 
+                        them perfect for both snacking and culinary creations.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-green-500">✓</span>
+                            <span class="text-gray-700">Seedless variety for easy eating</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-green-500">✓</span>
+                            <span class="text-gray-700">High in natural antioxidants</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-green-500">✓</span>
+                            <span class="text-gray-700">Perfect for wine making</span>
+                        </div>
+                    </div>
+                    <button>
+                        <a href="order.html" class="grape-button text-white px-8 py-4 rounded-full font-semibold text-lg">
+                        Order These Grapes
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="font-display text-4xl font-bold text-gray-800 mb-4">Get Fresh Grapes Delivered</h3>
+            <p class="text-xl text-gray-600 mb-8">
+                Ready to taste the difference? Contact us for fresh grape delivery or visit our vineyard
+            </p>
+            
+            <div class="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="text-center">
+                        <div class="text-3xl mb-2">📞</div>
+                        <h4 class="font-semibold text-gray-800">Call Us</h4>
+                        <p class="text-gray-600">+91 7276070530</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl mb-2">📧</div>
+                        <h4 class="font-semibold text-gray-800">Email Us</h4>
+                        <p class="text-gray-600">nashik@grapevine.com</p>
+                    </div>
+                  </div>
+
+                <!--<div class="space-y-4">
+                    <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-purple-500 focus:outline-none">
+                    <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-purple-500 focus:outline-none">
+                    <textarea placeholder="Tell us about your grape needs..." rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-purple-500 focus:outline-none resize-none"></textarea>
+                    <button class="grape-button text-white px-8 py-4 rounded-full font-semibold text-lg w-full">
+                        Send Message 🍇
+                    </button>
+                </div>-->
+                  <div class="space-y-4">
+                      <input id="name" type="text" placeholder="Your Name" 
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-purple-500 focus:outline-none">
+
+                      <input id="email" type="email" placeholder="Your Email" 
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-purple-500 focus:outline-none">
+
+                      <textarea id="message" placeholder="Tell us about your grape needs..." rows="4" 
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-purple-500 focus:outline-none resize-none"></textarea>
+
+                    <button onclick="sendWhatsAppMessage()" 
+                        class="grape-button text-white px-8 py-4 rounded-full font-semibold text-lg w-full">
+                        Send Message 🍇
+                    </button>
+                 </div>
+              
+                <p class="text-sm text-gray-500 mt-4">
+                    <strong>Demo Form:</strong> This is a sample contact form for demonstration purposes
+                </p>
+
+                <script>
+                   function sendWhatsAppMessage() {
+                       let name = document.getElementById("name").value;
+                       let email = document.getElementById("email").value;
+                       let message = document.getElementById("message").value;
+
+                       let phoneNumber = "917276070530"; 
+
+                       let text = `Hello, I am ${name}.\nMy email is ${email}.\nGrape needs: ${message}`;
+                       let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+
+                       window.open(url, '_blank');
+                    }
+                 </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="grape-gradient text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="text-2xl">🍇</div>
+                        <h4 class="font-display text-xl font-bold">GrapeVine</h4>
+                    </div>
+                    <p class="text-purple-100">
+                        Premium grapes delivered fresh from our vineyard to your table.
+                    </p>
+                </div>
+                
+                <div>
+                    <h5 class="font-semibold mb-4">Grape Varieties</h5>
+                    <ul class="space-y-2 text-purple-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Red Grapes</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Green Grapes</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Purple Grapes</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Wine Grapes</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-semibold mb-4">Services</h5>
+                    <ul class="space-y-2 text-purple-100">
+                        <li><a href="#" class="hover:text-white transition-colors">Fresh Delivery</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Bulk Orders</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Vineyard Tours</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Wine Making</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-semibold mb-4">Connect</h5>
+                    <div class="flex space-x-4">
+                        <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-colors">📘</button>
+                        <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-colors">📷</button>
+                        <button class="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-colors">🐦</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-purple-400 mt-8 pt-8 text-center text-purple-100">
+                <p>&copy; 2024 GrapeVine. All rights reserved. Fresh grapes, delivered with love. 🍇</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add interactive hover effects to grape cards
+        document.querySelectorAll('.grape-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Button click handler
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.textContent.includes('Order') || this.textContent.includes('Shop')) {
+                    alert('🍇 Thank you for your interest! This would connect to our grape ordering system.');
+               } else if (this.textContent.includes('Send Message')) {
+                    alert('🍇 Message sent! We\'ll get back to you about your grape needs soon.');
+                } else if (this.textContent.includes('Learn More')) {
+                   document.querySelector('#varieties').scrollIntoView({ behavior: 'smooth' });
+                } else if (this.textContent.includes('View')) {
+                   alert('🍇 Viewing ' + this.textContent + '! This would show our grape catalog.');
+               }
+           });
+       });
+   </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c5bf40c13affa2',t:'MTc1NDcyNjcxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
+
+</script>
+</body>
+</html>

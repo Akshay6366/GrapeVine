@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrapeVine - Fresh Grapes</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+    .font-display { font-family: 'Playfair Display', serif; }
+    .font-body { font-family: 'Inter', sans-serif; }
+    .grape-button {
+        background: linear-gradient(45deg, #8B5CF6, #7C3AED);
+        transition: all 0.3s ease;
+    }
+    .grape-button:hover {
+        background: linear-gradient(45deg, #7C3AED, #6D28D9);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+    }
+</style>
+</head>
+<body class="font-body bg-purple-50">
+
+<!-- Navigation -->
+<nav class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+        <h1 class="font-display text-2xl font-bold text-purple-800">🍇 GrapeVine</h1>
+        <div class="hidden md:flex space-x-8">
+            <a href="index.html" class="text-gray-700 hover:text-purple-600 transition-colors">Home</a>
+            <a href="#varieties" class="text-gray-700 hover:text-purple-600 transition-colors">Varieties</a>
+            <a href="#benefits" class="text-gray-700 hover:text-purple-600 transition-colors">Benefits</a>
+            <a href="#contact" class="text-gray-700 hover:text-purple-600 transition-colors">Contact</a>
+        </div>
+        <button onclick="document.querySelector('#order-form').scrollIntoView({behavior:'smooth'})" 
+                class="grape-button text-white px-6 py-2 rounded-full font-medium">
+            Order Now
+        </button>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="text-center py-16">
+    <h2 class="font-display text-5xl font-bold text-purple-700">Premium Grapes Delivered Fresh</h2>
+    <p class="text-lg text-gray-600 mt-4">From our vineyard to your table — sweet, juicy, and naturally fresh.</p>
+</section>
+
+<!-- Order Form -->
+<section id="order-form" class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
+    <h3 class="font-display text-3xl font-bold text-purple-800 mb-6 text-center">Order Fresh Grapes</h3>
+
+    <form id="grapeOrderForm" class="space-y-4">
+        <!-- Personal Info -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Full Name *</label>
+            <input type="text" name="name" required class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-purple-500 focus:border-purple-500">
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Phone Number *</label>
+            <input type="tel" name="phone" required pattern="[0-9]{10}" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-purple-500 focus:border-purple-500">
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Email Address (Optional)</label>
+            <input type="email" name="email" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-purple-500 focus:border-purple-500">
+        </div>
+
+        <!-- Address -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Street Address *</label>
+            <input type="text" name="address" required class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-purple-500 focus:border-purple-500">
+        </div>
+
+        <!-- Order Details -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Select Variety *</label>
+            <select name="variety" required class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-purple-500 focus:border-purple-500">
+                <option value="">Select...</option>
+              <option value="Red">Red Grapes - ₹200/kg</option>
+              <option value="Green">Green Grapes - ₹180/kg</option>
+              <option value="Black">Black Grapes - ₹220/kg</option>
+
+            </select>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Quantity (kg) *</label>
+            <input type="number" name="quantity" min="1" max="50" required class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-purple-500 focus:border-purple-500">
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="grape-button w-full text-white py-3 rounded-lg font-semibold">
+            Place Order via WhatsApp
+        </button>
+    </form>
+</section>
+
+<!-- JavaScript -->
+<script>
+document.getElementById("grapeOrderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Collect form values
+    const form = this;
+    const order = {
+        name: form.name.value,
+        phone: form.phone.value,
+        email: form.email.value || "N/A",
+        address: form.address.value,
+        variety: form.variety.value,
+        quantity: parseInt(form.quantity.value),
+        date: new Date().toISOString()
+    };
+
+    // ✅ Save to localStorage instead of PHP
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    orders.push(order);
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    // WhatsApp message
+    const message = `🍇 New Grape Order:\n\nName: ${order.name}\nPhone: ${order.phone}\nEmail: ${order.email}\nAddress: ${order.address}\nVariety: ${order.variety}\nQuantity: ${order.quantity} kg`;
+    const whatsappNumber = "917276070530"; // Your WhatsApp number
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank");
+
+    alert("✅ Order saved successfully!");
+    form.reset();
+});
+</script>
+
+
+</body>
+</html>
+
+
